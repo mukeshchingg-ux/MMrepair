@@ -1,22 +1,12 @@
 workflows:
   mm_repair_android:
-    name: MM Repair Android APK
-    max_build_duration: 30
-    instance_type: mac_mini_m2
-    environment:
-      java: 17
-    scripts:
-  - name: Build debug APK
-    script: |
-      chmod +x ./gradlew
-      ./gradlew assembleDebug
+    name: MM Repair Android
 
-artifacts:
-  - app/build/outputs/apk/debug/*.apk
-    publishing:
-      email:
-        recipients:
-          - mukeshchingg@gmail.com
-        notify:
-          success: true
-          failure: true
+    scripts:
+      - name: Build debug APK
+        script: |
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
+
+    artifacts:
+      - app/build/outputs/apk/debug/*.apk
