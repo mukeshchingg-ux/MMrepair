@@ -15,7 +15,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - $CM_BUILD_OWNER_EMAIL
+          - mukeshchingg@gmail.com
         notify:
           success: true
           failure: true
