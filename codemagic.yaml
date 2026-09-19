@@ -6,12 +6,13 @@ workflows:
     environment:
       java: 17
     scripts:
-      - name: Build release APK
-        script: |
-          chmod +x ./gradlew
-                ./gradlew assembleDebug
-    artifacts:
-      - app/build/outputs/apk/release/*.apk
+  - name: Build debug APK
+    script: |
+      chmod +x ./gradlew
+      ./gradlew assembleDebug
+
+artifacts:
+  - app/build/outputs/apk/debug/*.apk
     publishing:
       email:
         recipients:
