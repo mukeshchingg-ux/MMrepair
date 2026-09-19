@@ -1,0 +1,10 @@
+{
+  "name":"Micro Mobile Repair — MM Repair",
+  "short_name":"MM Repair",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#f4f7fb",
+  "theme_color":"#06233f",
+  "description":"Micro Mobile Repair service, estimate, parts and booking app.",
+  "icons":[{"src":"assets/icon.png","sizes":"180x180","type":"image/png"},{"src":"assets/icon.png","sizes":"512x512","type":"image/png"}]
+}

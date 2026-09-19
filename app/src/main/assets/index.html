@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#06233f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icon.png">
+<title>Micro Mobile Repair — MM Repair</title>
+<style>
+:root{--navy:#06233f;--blue:#087cff;--green:#19b96b;--bg:#f4f7fb;--text:#102033;--muted:#718096;--card:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.app{max-width:520px;margin:auto;min-height:100vh;background:var(--bg);padding-bottom:76px}
+.top{background:linear-gradient(145deg,#031a30,#0a3b66);color:#fff;padding:18px 18px 22px;border-radius:0 0 24px 24px}
+.brand{display:flex;align-items:center;gap:10px}.brand img{width:48px;height:48px;border-radius:14px}.brand b{display:block;font-size:18px}.brand span{font-size:12px;opacity:.8}
+.hero{margin-top:18px}.hero h1{margin:0 0 7px;font-size:27px}.hero p{margin:0;color:#dbeafe;font-size:14px;line-height:1.5}
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.quick button{border:0;background:#fff;border-radius:16px;padding:15px 10px;font-weight:700;color:var(--navy);box-shadow:0 5px 18px #0002}
+.icon{font-size:22px;display:block;margin-bottom:7px}.wa{background:var(--green)!important;color:#fff!important;grid-column:1/-1}
+main{padding:16px}.section-title{display:flex;justify-content:space-between;align-items:center;margin:4px 2px 12px}.section-title h2{font-size:18px;margin:0}.muted{color:var(--muted);font-size:13px}
+.card{background:var(--card);border-radius:17px;padding:15px;margin-bottom:11px;box-shadow:0 3px 14px #15324b10}
+.service{display:flex;align-items:center;gap:12px}.service .sicon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:#e9f3ff;font-size:24px}.service b{display:block}.service small{color:var(--muted);line-height:1.4}
+.page{display:none}.page.active{display:block}.back{background:none;border:0;color:#fff;font-size:16px;padding:0 0 12px}
+label{font-size:13px;font-weight:700;display:block;margin:12px 0 6px}input,select,textarea{width:100%;padding:13px;border:1px solid #d9e2ec;border-radius:12px;background:#fff;font:inherit}textarea{min-height:90px;resize:vertical}
+.primary{width:100%;border:0;border-radius:13px;padding:14px;background:var(--blue);color:#fff;font-weight:800;margin-top:15px}.secondary{width:100%;border:1px solid #cbd8e6;border-radius:13px;padding:13px;background:#fff;font-weight:700;margin-top:9px}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);height:70px;background:#fff;border-top:1px solid #e2e8f0;display:grid;grid-template-columns:repeat(4,1fr);z-index:10}.bottom button{border:0;background:#fff;color:#718096;font-size:11px}.bottom button.active{color:var(--blue);font-weight:800}.bottom span{display:block;font-size:21px;margin-bottom:3px}
+.pill{display:inline-block;padding:5px 9px;border-radius:20px;background:#e8fff2;color:#08783f;font-size:11px;font-weight:800}.price{font-weight:800;font-size:15px}.search{margin-bottom:12px}
+.status{display:flex;gap:12px;position:relative;padding-bottom:18px}.dot{width:22px;height:22px;border-radius:50%;background:#d8e1ea;flex:none;margin-top:2px}.done .dot{background:#19b96b}.current .dot{background:#087cff;box-shadow:0 0 0 5px #dcebff}.status:not(:last-child):after{content:"";position:absolute;left:10px;top:24px;height:calc(100% - 18px);width:2px;background:#d8e1ea}.status b{font-size:14px}.status small{display:block;color:var(--muted);margin-top:3px}
+.notice{background:#eef6ff;border-radius:13px;padding:12px;font-size:13px;line-height:1.5}
+.empty{padding:24px;text-align:center;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><img src="assets/icon.png"><div><b>MICRO MOBILE REPAIR</b><span>MM Repair</span></div></div>
+  <div class="hero"><h1>Your Device • Our Expertise</h1><p>iPhone, iPad, MacBook and Android repair • Board-level & motherboard service.</p></div>
+  <div class="quick">
+    <button onclick="showPage('estimate')"><span class="icon">🧾</span>Repair Estimate</button>
+    <button onclick="showPage('services')"><span class="icon">🛠️</span>Our Services</button>
+    <button onclick="showPage('parts')"><span class="icon">📦</span>Parts & Spares</button>
+    <button onclick="showPage('booking')"><span class="icon">📅</span>Book Repair</button>
+    <button class="wa" onclick="whatsapp('Hello Micro Mobile Repair, I want to enquire about a repair.')">💬 Chat on WhatsApp</button>
+  </div>
+</header>
+
+<main>
+<section id="home" class="page active">
+  <div class="section-title"><h2>Popular Services</h2><span class="muted">MM Repair</span></div>
+  <div id="homeServices"></div>
+  <div class="card"><b>📍 Micro Mobile Repair</b><p class="muted">For exact shop address, opening hours and directions, use the Contact section.</p><button class="secondary" onclick="showPage('contact')">Contact & Location</button></div>
+</section>
+
+<section id="services" class="page">
+  <div class="top mini"><button class="back" onclick="showPage('home')">‹ Back</button><div class="brand"><img src="assets/icon.png"><div><b>Our Services</b><span>Micro Mobile Repair</span></div></div></div>
+  <div style="padding-top:15px" id="serviceList"></div>
+</section>
+
+<section id="estimate" class="page">
+  <div class="top mini"><button class="back" onclick="showPage('home')">‹ Back</button><div class="brand"><img src="assets/icon.png"><div><b>Get Repair Estimate</b><span>MM Repair</span></div></div></div>
+  <div class="card">
+    <label>Brand</label><select id="brand"><option>iPhone</option><option>iPad</option><option>MacBook</option><option>Samsung</option><option>OnePlus</option><option>Oppo</option><option>Vivo</option><option>Other Android</option></select>
+    <label>Model</label><input id="model" placeholder="e.g. iPhone 13">
+    <label>Problem / Service</label><select id="problem"><option>Screen Replacement</option><option>Battery Replacement</option><option>Charging Port</option><option>Back Glass</option><option>Motherboard / Chip Level</option><option>Water Damage</option><option>Other</option></select>
+    <label>Details</label><textarea id="details" placeholder="Tell us about the fault..."></textarea>
+    <button class="primary" onclick="sendEstimate()">Get Estimate on WhatsApp</button>
+  </div>
+</section>
+
+<section id="parts" class="page">
+  <div class="top mini"><button class="back" onclick="showPage('home')">‹ Back</button><div class="brand"><img src="assets/icon.png"><div><b>Parts & Spares</b><span>Availability</span></div></div></div>
+  <div style="padding-top:15px"><input class="search" id="partSearch" oninput="renderParts()" placeholder="Search part, e.g. iPhone 13 screen"><div id="partsList"></div></div>
+</section>
+
+<section id="booking" class="page">
+  <div class="top mini"><button class="back" onclick="showPage('home')">‹ Back</button><div class="brand"><img src="assets/icon.png"><div><b>Book Repair</b><span>Quick request</span></div></div></div>
+  <div class="card">
+    <label>Name</label><input id="name" placeholder="Your name">
+    <label>Phone</label><input id="phone" inputmode="tel" placeholder="Mobile number">
+    <label>Device / Model</label><input id="device" placeholder="e.g. iPhone 13">
+    <label>Problem</label><input id="bookProblem" placeholder="What needs repair?">
+    <label>Preferred Date</label><input id="date" type="date">
+    <button class="primary" onclick="bookRepair()">Submit Repair Request</button>
+  </div>
+</section>
+
+<section id="status" class="page">
+  <div class="top mini"><button class="back" onclick="showPage('home')">‹ Back</button><div class="brand"><img src="assets/icon.png"><div><b>Repair Status</b><span>Track your request</span></div></div></div>
+  <div style="padding-top:15px"><div class="card">
+    <div id="statusContent"><div class="empty">No repair request saved on this device yet.<br><button class="secondary" onclick="showPage('booking')">Book a Repair</button></div></div>
+  </div></div>
+</section>
+
+<section id="contact" class="page">
+  <div class="top mini"><button class="back" onclick="showPage('home')">‹ Back</button><div class="brand"><img src="assets/icon.png"><div><b>Contact Us</b><span>Micro Mobile Repair</span></div></div></div>
+  <div style="padding-top:15px">
+    <div class="card"><b>📞 WhatsApp / Call</b><p>+91 62839 01749</p><button class="primary" onclick="whatsapp('Hello Micro Mobile Repair, I need help.')">WhatsApp Chat</button></div>
+    <div class="card"><b>🌐 Website</b><p class="muted">micromobilerepair.com</p><button class="secondary" onclick="location.href='https://micromobilerepair.com'">Open Website</button></div>
+    <div class="card notice">Shop address and opening hours can be updated here. The app keeps these details in one place for customers.</div>
+  </div>
+</section>
+</main>
+
+<nav class="bottom">
+<button onclick="showPage('home')" data-page="home" class="active"><span>⌂</span>Home</button>
+<button onclick="showPage('services')" data-page="services"><span>🛠</span>Services</button>
+<button onclick="showPage('parts')" data-page="parts"><span>▣</span>Parts</button>
+<button onclick="showPage('booking')" data-page="booking"><span>▣</span>Booking</button>
+</nav>
+</div>
+
+<script>
+const WA='916283901749';
+const services=[
+ ['📱','iPhone Repair','Screen, battery, charging, motherboard & more'],
+ ['▣','iPad Repair','Screen, battery, charging & more'],
+ ['💻','MacBook Repair','Motherboard, screen, battery & water damage'],
+ ['📲','Android Repair','Screen, battery, charging & motherboard'],
+ ['🔬','Chip Level Repair','Motherboard fault diagnosis & repair'],
+ ['🎧','AirPods Repair','Battery replacement & charging issues']
+];
+const parts=[
+ ['iPhone 13 Display (Original)','iPhone','₹2,800',true],
+ ['iPhone 13 Battery','iPhone','₹2,800',true],
+ ['iPhone 13 Back Glass','iPhone','₹1,500',true],
+ ['iPhone 13 Charging Port','iPhone','₹1,200',true],
+ ['MacBook Air M1 Screen','MacBook','₹16,500',false],
+ ['AirPods Pro Battery','AirPods','₹2,200',true]
+];
+function whatsapp(msg){location.href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg)}
+function showPage(id){
+ document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+ document.getElementById(id).classList.add('active');
+ document.querySelectorAll('.bottom button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));
+ window.scrollTo(0,0);
+ if(id==='status') renderStatus();
+}
+function renderServices(){
+ const html=services.map(s=>`<div class="card service"><div class="sicon">${s[0]}</div><div><b>${s[1]}</b><small>${s[2]}</small></div></div>`).join('');
+ document.getElementById('serviceList').innerHTML=html;
+ document.getElementById('homeServices').innerHTML=services.slice(0,4).map(s=>`<div class="card service"><div class="sicon">${s[0]}</div><div><b>${s[1]}</b><small>${s[2]}</small></div></div>`).join('');
+}
+function renderParts(){
+ const q=(document.getElementById('partSearch').value||'').toLowerCase();
+ const found=parts.filter(p=>(p[0]+' '+p[1]).toLowerCase().includes(q));
+ document.getElementById('partsList').innerHTML=found.length?found.map(p=>`<div class="card"><div style="display:flex;justify-content:space-between;gap:8px"><div><b>${p[0]}</b><div class="muted">${p[1]}</div></div><div class="price">${p[2]}</div></div><div style="margin-top:8px"><span class="pill">${p[3]?'In Stock':'Limited Stock'}</span></div></div>`).join(''):'<div class="empty">No matching part found.</div>';
+}
+function sendEstimate(){
+ const msg=`Hello Micro Mobile Repair,%0A%0AI want a repair estimate.%0ABrand: ${document.getElementById('brand').value}%0AModel: ${document.getElementById('model').value}%0AProblem: ${document.getElementById('problem').value}%0ADetails: ${document.getElementById('details').value||'N/A'}`;
+ location.href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
+}
+function bookRepair(){
+ const data={name:name.value,phone:phone.value,device:device.value,problem:bookProblem.value,date:date.value,id:Math.floor(10000+Math.random()*89999)};
+ if(!data.name||!data.phone||!data.device||!data.problem){alert('Please fill Name, Phone, Device and Problem.');return}
+ localStorage.setItem('mmRepairRequest',JSON.stringify(data));
+ const msg=`Hello Micro Mobile Repair,%0A%0ABook a repair:%0ARequest #${data.id}%0AName: ${data.name}%0APhone: ${data.phone}%0ADevice: ${data.device}%0AProblem: ${data.problem}%0APreferred date: ${data.date||'Not specified'}`;
+ location.href='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
+}
+function renderStatus(){
+ const d=JSON.parse(localStorage.getItem('mmRepairRequest')||'null');
+ statusContent.innerHTML=d?`<b>Repair Request #${d.id}</b><p class="muted">${d.device} • ${d.problem}</p>
+ <div class="status done"><div class="dot"></div><div><b>Request Submitted</b><small>Details saved on this device</small></div></div>
+ <div class="status current"><div class="dot"></div><div><b>Awaiting Diagnosis</b><small>Contact the shop on WhatsApp for live status</small></div></div>
+ <div class="status"><div class="dot"></div><div><b>Repairing</b><small>Pending</small></div></div>
+ <div class="status"><div class="dot"></div><div><b>Ready for Pickup</b><small>Pending</small></div></div>
+ <button class="primary" onclick="whatsapp('Hello Micro Mobile Repair, please update my repair request #${d.id}.')">Ask Status on WhatsApp</button>`:'<div class="empty">No repair request saved on this device yet.<br><button class="secondary" onclick="showPage(\'booking\')">Book a Repair</button></div>';
+}
+renderServices();renderParts();
+</script>
+<script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}</script></body>
+</html>
