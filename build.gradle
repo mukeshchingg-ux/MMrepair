@@ -1,31 +1,3 @@
 plugins {
-    plugins {
     id 'com.android.application' version '8.7.3' apply false
-}
-
-android {
-    namespace 'com.micromobilerepair.mmrepair'
-    compileSdk 35
-
-    defaultConfig {
-        applicationId 'com.micromobilerepair.mmrepair'
-        minSdk 23
-        targetSdk 35
-        versionCode 1
-        versionName '1.0'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    packaging {
-        resources {
-            excludes += ['/META-INF/{AL2.0,LGPL2.1}']
-        }
-    }
 }
